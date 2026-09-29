@@ -1,533 +1,532 @@
-‎<!DOCTYPE html>
-‎<html lang="en">
-‎<head>
-‎    <meta charset="UTF-8">
-‎    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎    <title>iCloud Remover Apple</title>
-‎    <!-- Google Fonts & FontAwesome -->
-‎    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-‎    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-‎    
-‎    <style>
-‎        :root {
-‎            --primary-color: #0071e3;
-‎            --dark-bg: #000000;
-‎            --card-bg: #161618;
-‎            --border-color: rgba(255, 255, 255, 0.12);
-‎            --text-main: #f5f5f7;
-‎            --text-secondary: #86868b;
-‎            --jazzcash-red: #ed1c24;
-‎            --whatsapp-green: #25d366;
-‎        }
-‎
-‎        * {
-‎            margin: 0;
-‎            padding: 0;
-‎            box-sizing: border-box;
-‎            font-family: 'Poppins', sans-serif;
-‎        }
-‎
-‎        body {
-‎            background-color: var(--dark-bg);
-‎            color: var(--text-main);
-‎            min-height: 100vh;
-‎            display: flex;
-‎            justify-content: center;
-‎            align-items: center;
-‎            padding: 15px;
-‎            position: relative;
-‎        }
-‎
-‎        .container {
-‎            width: 100%;
-‎            max-width: 520px;
-‎        }
-‎
-‎        .card {
-‎            background: var(--card-bg);
-‎            border: 1px solid var(--border-color);
-‎            border-radius: 28px;
-‎            padding: 25px 20px;
-‎            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-‎            animation: fadeIn 0.5s ease forwards;
-‎        }
-‎
-‎        @keyframes fadeIn {
-‎            from { opacity: 0; transform: translateY(15px); }
-‎            to { opacity: 1; transform: translateY(0); }
-‎        }
-‎
-‎        /* Header & Notice */
-‎        .header {
-‎            text-align: center;
-‎            margin-bottom: 20px;
-‎        }
-‎
-‎        .apple-logo {
-‎            font-size: 45px;
-‎            color: #fff;
-‎            margin-bottom: 5px;
-‎        }
-‎
-‎        .header h1 {
-‎            font-size: 28px;
-‎            font-weight: 800;
-‎            letter-spacing: -0.5px;
-‎            color: #fff;
-‎        }
-‎
-‎        .notice-box {
-‎            background: rgba(237, 28, 36, 0.15);
-‎            border: 1.5px solid var(--jazzcash-red);
-‎            padding: 14px 16px;
-‎            border-radius: 16px;
-‎            text-align: center;
-‎            margin-bottom: 25px;
-‎        }
-‎
-‎        .notice-box p {
-‎            font-size: 15px;
-‎            font-weight: 700;
-‎            color: #ffb3b5;
-‎            line-height: 1.4;
-‎            letter-spacing: 0.3px;
-‎        }
-‎
-‎        /* Step Management */
-‎        .step-content {
-‎            display: none;
-‎        }
-‎
-‎        .step-content.active {
-‎            display: block;
-‎        }
-‎
-‎        /* Big Series & Model Cards layout */
-‎        .series-section {
-‎            background: rgba(255, 255, 255, 0.03);
-‎            border: 1px solid var(--border-color);
-‎            border-radius: 20px;
-‎            padding: 16px;
-‎            margin-bottom: 18px;
-‎        }
-‎
-‎        .series-title {
-‎            font-size: 20px;
-‎            font-weight: 700;
-‎            color: #fff;
-‎            margin-bottom: 12px;
-‎            padding-left: 5px;
-‎        }
-‎
-‎        .model-btn-group {
-‎            display: flex;
-‎            flex-direction: column;
-‎            gap: 10px;
-‎        }
-‎
-‎        .model-option-btn {
-‎            width: 100%;
-‎            padding: 16px 20px;
-‎            background: rgba(255, 255, 255, 0.06);
-‎            border: 1px solid rgba(255, 255, 255, 0.08);
-‎            border-radius: 14px;
-‎            color: #fff;
-‎            font-size: 16px;
-‎            font-weight: 600;
-‎            text-align: left;
-‎            cursor: pointer;
-‎            transition: all 0.25s ease;
-‎            display: flex;
-‎            justify-content: space-between;
-‎            align-items: center;
-‎        }
-‎
-‎        .model-option-btn:hover {
-‎            background: var(--primary-color);
-‎            border-color: var(--primary-color);
-‎            transform: translateY(-2px);
-‎            box-shadow: 0 6px 15px rgba(0, 113, 227, 0.4);
-‎        }
-‎
-‎        .model-option-btn i {
-‎            color: var(--text-secondary);
-‎            font-size: 14px;
-‎        }
-‎
-‎        .model-option-btn:hover i {
-‎            color: #fff;
-‎        }
-‎
-‎        /* Form Controls for Step 2 & 3 */
-‎        .form-group {
-‎            margin-bottom: 20px;
-‎        }
-‎
-‎        .form-group label {
-‎            display: block;
-‎            font-size: 14px;
-‎            font-weight: 600;
-‎            color: var(--text-secondary);
-‎            margin-bottom: 8px;
-‎        }
-‎
-‎        select, input {
-‎            width: 100%;
-‎            padding: 16px;
-‎            background: rgba(255, 255, 255, 0.06);
-‎            border: 1px solid var(--border-color);
-‎            border-radius: 14px;
-‎            color: #fff;
-‎            font-size: 16px;
-‎            outline: none;
-‎            transition: all 0.3s ease;
-‎        }
-‎
-‎        select option {
-‎            background: #1c1c1e;
-‎            color: #fff;
-‎        }
-‎
-‎        select:focus, input:focus {
-‎            border-color: var(--primary-color);
-‎            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
-‎        }
-‎
-‎        .btn {
-‎            width: 100%;
-‎            padding: 16px;
-‎            background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%);
-‎            color: white;
-‎            border: none;
-‎            border-radius: 14px;
-‎            font-size: 17px;
-‎            font-weight: 700;
-‎            cursor: pointer;
-‎            transition: all 0.3s ease;
-‎            box-shadow: 0 6px 20px rgba(0, 113, 227, 0.4);
-‎            margin-top: 10px;
-‎        }
-‎
-‎        .btn:hover {
-‎            transform: translateY(-2px);
-‎            box-shadow: 0 8px 25px rgba(0, 113, 227, 0.6);
-‎        }
-‎
-‎        .back-link {
-‎            display: inline-block;
-‎            margin-top: 15px;
-‎            color: var(--primary-color);
-‎            font-size: 15px;
-‎            text-decoration: none;
-‎            font-weight: 600;
-‎            cursor: pointer;
-‎        }
-‎
-‎        .back-link:hover {
-‎            text-decoration: underline;
-‎        }
-‎
-‎        /* Payment Card Style */
-‎        .payment-card {
-‎            background: rgba(237, 28, 36, 0.08);
-‎            border: 1.5px solid rgba(237, 28, 36, 0.4);
-‎            border-radius: 18px;
-‎            padding: 22px;
-‎            text-align: center;
-‎            margin-bottom: 20px;
-‎        }
-‎
-‎        .jazzcash-logo-text {
-‎            font-size: 24px;
-‎            font-weight: 800;
-‎            color: var(--jazzcash-red);
-‎            margin-bottom: 12px;
-‎            display: flex;
-‎            align-items: center;
-‎            justify-content: center;
-‎            gap: 10px;
-‎        }
-‎
-‎        .payment-details p {
-‎            font-size: 15px;
-‎            margin: 8px 0;
-‎            color: #d1d1d6;
-‎        }
-‎
-‎        .payment-details span {
-‎            font-weight: 700;
-‎            color: #fff;
-‎        }
-‎
-‎        /* Pending Spinner */
-‎        .pending-container {
-‎            text-align: center;
-‎            padding: 30px 0;
-‎        }
-‎
-‎        .spinner {
-‎            width: 65px;
-‎            height: 65px;
-‎            border: 4px solid rgba(255, 255, 255, 0.1);
-‎            border-top: 4px solid var(--jazzcash-red);
-‎            border-radius: 50%;
-‎            animation: spin 1s linear infinite;
-‎            margin: 0 auto 20px auto;
-‎        }
-‎
-‎        @keyframes spin {
-‎            0% { transform: rotate(0deg); }
-‎            100% { transform: rotate(360deg); }
-‎        }
-‎
-‎        .pending-container h3 {
-‎            font-size: 22px;
-‎            font-weight: 700;
-‎            margin-bottom: 10px;
-‎        }
-‎
-‎        .pending-container p {
-‎            font-size: 15px;
-‎            color: var(--text-secondary);
-‎            line-height: 1.5;
-‎        }
-‎
-‎        /* WhatsApp Floating Button */
-‎        .whatsapp-float {
-‎            position: fixed;
-‎            bottom: 25px;
-‎            right: 25px;
-‎            background-color: var(--whatsapp-green);
-‎            color: white;
-‎            width: 60px;
-‎            height: 60px;
-‎            border-radius: 50%;
-‎            display: flex;
-‎            align-items: center;
-‎            justify-content: center;
-‎            font-size: 32px;
-‎            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-‎            z-index: 100;
-‎            text-decoration: none;
-‎            transition: all 0.3s ease;
-‎            animation: bounce 2s infinite;
-‎        }
-‎
-‎        .whatsapp-float:hover {
-‎            transform: scale(1.1);
-‎            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8);
-‎        }
-‎
-‎        @keyframes bounce {
-‎            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-‎            40% { transform: translateY(-8px); }
-‎            60% { transform: translateY(-4px); }
-‎        }
-‎    </style>
-‎</head>
-‎<body>
-‎
-‎    <!-- Floating WhatsApp Help Button -->
-‎    <a href="https://wa.me/923170090059?text=Hi,%20mujhe%20iCloud%20Removal%20ke%20bare%20me%20help%20chahiye" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-‎        <i class="fab fa-whatsapp"></i>
-‎    </a>
-‎
-‎    <div class="container">
-‎        <div class="card">
-‎            
-‎            <!-- Header & Notice -->
-‎            <div class="header">
-‎                <div class="apple-logo"><i class="fab fa-apple"></i></div>
-‎                <h1>iCloud Remover Apple</h1>
-‎            </div>
-‎
-‎            <div class="notice-box">
-‎                <p>NOTE: This Tool Support Only 26.1 to 26.5</p>
-‎            </div>
-‎
-‎            <!-- STEP 1: Big Model Selection List -->
-‎            <div id="step-1" class="step-content active">
-‎                
-‎                <!-- iPhone 11 Series -->
-‎                <div class="series-section">
-‎                    <div class="series-title">iPhone 11</div>
-‎                    <div class="model-btn-group">
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 11', '11')">iPhone 11 <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 11 Pro', '11')">iPhone 11 Pro <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 11 Pro Max', '11')">iPhone 11 Pro Max <i class="fas fa-chevron-right"></i></button>
-‎                    </div>
-‎                </div>
-‎
-‎                <!-- iPhone 12 Series -->
-‎                <div class="series-section">
-‎                    <div class="series-title">iPhone 12</div>
-‎                    <div class="model-btn-group">
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 12', '12')">iPhone 12 <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 12 mini', '12')">iPhone 12 mini <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 12 Pro', '12')">iPhone 12 Pro <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 12 Pro Max', '12')">iPhone 12 Pro Max <i class="fas fa-chevron-right"></i></button>
-‎                    </div>
-‎                </div>
-‎
-‎                <!-- iPhone 13 Series -->
-‎                <div class="series-section">
-‎                    <div class="series-title">iPhone 13</div>
-‎                    <div class="model-btn-group">
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 13', '13')">iPhone 13 <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 13 mini', '13')">iPhone 13 mini <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 13 Pro', '13')">iPhone 13 Pro <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 13 Pro Max', '13')">iPhone 13 Pro Max <i class="fas fa-chevron-right"></i></button>
-‎                    </div>
-‎                </div>
-‎
-‎                <!-- iPhone 14 Series -->
-‎                <div class="series-section">
-‎                    <div class="series-title">iPhone 14</div>
-‎                    <div class="model-btn-group">
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 14', '14')">iPhone 14 <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Plus', '14')">iPhone 14 Plus <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Pro', '14')">iPhone 14 Pro <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Pro Max', '14')">iPhone 14 Pro Max <i class="fas fa-chevron-right"></i></button>
-‎                    </div>
-‎                </div>
-‎
-‎                <!-- iPhone 15 Series -->
-‎                <div class="series-section">
-‎                    <div class="series-title">iPhone 15</div>
-‎                    <div class="model-btn-group">
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 15', '15')">iPhone 15 <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Plus', '15')">iPhone 15 Plus <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Pro', '15')">iPhone 15 Pro <i class="fas fa-chevron-right"></i></button>
-‎                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Pro Max', '15')">iPhone 15 Pro Max <i class="fas fa-chevron-right"></i></button>
-‎                    </div>
-‎                </div>
-‎
-‎            </div>
-‎
-‎            <!-- STEP 2: Service, Serial & IMEI Details -->
-‎            <div id="step-2" class="step-content">
-‎                <div class="form-group">
-‎                    <label for="remove-option">Select Remove Option</label>
-‎                    <select id="remove-option">
-‎                        <!-- Populated dynamically based on selected model -->
-‎                    </select>
-‎                </div>
-‎
-‎                <div class="form-group">
-‎                    <label for="serial-number">iPhone Serial Number</label>
-‎                    <input type="text" id="serial-number" placeholder="Enter device serial number">
-‎                </div>
-‎
-‎                <div class="form-group">
-‎                    <label for="imei-number">iPhone IMEI Number</label>
-‎                    <input type="text" id="imei-number" placeholder="Enter 15-digit IMEI number">
-‎                </div>
-‎
-‎                <button class="btn" onclick="goToPayment()">Next</button>
-‎                <br>
-‎                <a class="back-link" onclick="goBackToStep1()"><i class="fas fa-arrow-left"></i> Back to Models</a>
-‎            </div>
-‎
-‎            <!-- STEP 3: JazzCash Payment Screen -->
-‎            <div id="step-3" class="step-content">
-‎                <div class="payment-card">
-‎                    <div class="jazzcash-logo-text">
-‎                        <i class="fas fa-wallet"></i> JazzCash Payment
-‎                    </div>
-‎                    <div class="payment-details">
-‎                        <p>Selected Service: <span id="pay-service-name">-</span></p>
-‎                        <p>Total Amount: <span id="pay-amount" style="color: #ff3b30; font-size: 19px;">-</span></p>
-‎                        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 12px 0;">
-‎                        <p>JazzCash Number: <span>03211073755</span></p>
-‎                        <p>Name: <span>Rasheedan</span></p>
-‎                    </div>
-‎                </div>
-‎
-‎                <button class="btn" style="background: linear-gradient(135deg, #ed1c24 0%, #b3141b 100%); box-shadow: 0 6px 20px rgba(237, 28, 36, 0.4);" onclick="submitPayment()">Send Payment</button>
-‎                <br>
-‎                <a class="back-link" onclick="goBackToStep2()"><i class="fas fa-arrow-left"></i> Back</a>
-‎            </div>
-‎
-‎            <!-- STEP 4: Pending Status Screen -->
-‎            <div id="step-4" class="step-content">
-‎                <div class="pending-container">
-‎                    <div class="spinner"></div>
-‎                    <h3>Pending</h3>
-‎                    <p>Aapki payment aur request submit ho chuki hai. Verification process mein hai, kripya intezaar karein...</p>
-‎                </div>
-‎            </div>
-‎
-‎        </div>
-‎    </div>
-‎
-‎    <script>
-‎        // Model prices configuration mapping
-‎        const modelPrices = {
-‎            "11": { bypass: 4000, permanent: 10000 },
-‎            "12": { bypass: 5000, permanent: 13000 },
-‎            "13": { bypass: 6000, permanent: 14000 },
-‎            "14": { bypass: 7000, permanent: 17000 },
-‎            "15": { bypass: 8000, permanent: 18000 }
-‎        };
-‎
-‎        let activeModelName = "";
-‎        let activeSeriesKey = "";
-‎
-‎        function selectModel(modelName, seriesKey) {
-‎            activeModelName = modelName;
-‎            activeSeriesKey = seriesKey;
-‎
-‎            const prices = modelPrices[seriesKey];
-‎            const removeOptionSelect = document.getElementById("remove-option");
-‎
-‎            // Only show rates for the selected model
-‎            removeOptionSelect.innerHTML = `
-‎                <option value="bypass" data-price="${prices.bypass}">${activeModelName} - iCloud Bypass (Rs ${prices.bypass})</option>
-‎                <option value="permanent" data-price="${prices.permanent}">${activeModelName} - Permanent Remove (Rs ${prices.permanent})</option>
-‎            `;
-‎
-‎            switchStep("step-2");
-‎        }
-‎
-‎        function goToPayment() {
-‎            const serial = document.getElementById("serial-number").value.trim();
-‎            const imei = document.getElementById("imei-number").value.trim();
-‎
-‎            if (!serial || !imei) {
-‎                alert("Kripya Serial Number aur IMEI Number enter karein!");
-‎                return;
-‎            }
-‎
-‎            const removeOptionSelect = document.getElementById("remove-option");
-‎            const selectedOptText = removeOptionSelect.options[removeOptionSelect.selectedIndex].text;
-‎            const selectedPrice = removeOptionSelect.options[removeOptionSelect.selectedIndex].getAttribute("data-price");
-‎
-‎            document.getElementById("pay-service-name").textContent = selectedOptText;
-‎            document.getElementById("pay-amount").textContent = `Rs ${selectedPrice}`;
-‎
-‎            switchStep("step-3");
-‎        }
-‎
-‎        function submitPayment() {
-‎            switchStep("step-4");
-‎        }
-‎
-‎        function goBackToStep1() {
-‎            switchStep("step-1");
-‎        }
-‎
-‎        function goBackToStep2() {
-‎            switchStep("step-2");
-‎        }
-‎
-‎        function switchStep(stepId) {
-‎            document.querySelectorAll(".step-content").forEach(el => {
-‎                el.classList.remove("active");
-‎            });
-‎            document.getElementById(stepId).classList.add("active");
-‎            window.scrollTo({ top: 0, behavior: 'smooth' });
-‎        }
-‎    </script>
-‎</body>
-‎</html>
-‎
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCloud Remover Apple</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --dark-bg: #000000;
+            --card-bg: #161618;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-main: #f5f5f7;
+            --text-secondary: #86868b;
+            --jazzcash-red: #ed1c24;
+            --whatsapp-green: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 25px 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header & Notice */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .apple-logo {
+            font-size: 45px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .notice-box {
+            background: rgba(237, 28, 36, 0.15);
+            border: 1.5px solid var(--jazzcash-red);
+            padding: 14px 16px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .notice-box p {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffb3b5;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+        }
+
+        /* Step Management */
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        /* Big Series & Model Cards layout */
+        .series-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .series-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .model-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .model-option-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .model-option-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 113, 227, 0.4);
+        }
+
+        .model-option-btn i {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .model-option-btn:hover i {
+            color: #fff;
+        }
+
+        /* Form Controls for Step 2 & 3 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        select option {
+            background: #1c1c1e;
+            color: #fff;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0071e3 0%, #005bb5 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 113, 227, 0.4);
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 113, 227, 0.6);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Payment Card Style */
+        .payment-card {
+            background: rgba(237, 28, 36, 0.08);
+            border: 1.5px solid rgba(237, 28, 36, 0.4);
+            border-radius: 18px;
+            padding: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .jazzcash-logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--jazzcash-red);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .payment-details p {
+            font-size: 15px;
+            margin: 8px 0;
+            color: #d1d1d6;
+        }
+
+        .payment-details span {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Pending Spinner */
+        .pending-container {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .spinner {
+            width: 65px;
+            height: 65px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--jazzcash-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pending-container h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pending-container p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WhatsApp Help Button -->
+    <a href="https://wa.me/923170090059' b_$*n.5bxm ?text=Hi,%20mujhe%20iCloud%20Removal%20ke%20bare%20me%20help%20chahiye" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="container">
+        <div class="card">
+            
+            <!-- Header & Notice -->
+            <div class="header">
+                <div class="apple-logo"><i class="fab fa-apple"></i></div>
+                <h1>iCloud Remover Apple</h1>
+            </div>
+
+            <div class="notice-box">
+                <p>NOTE: This Tool Support Only 26.1 to 26.5</p>
+            </div>
+
+            <!-- STEP 1: Big Model Selection List -->
+            <div id="step-1" class="step-content active">
+                
+                <!-- iPhone 11 Series -->
+                <div class="series-section">
+                    <div class="series-title">iPhone 11</div>
+                    <div class="model-btn-group">
+                        <button class="model-option-btn" onclick="selectModel('iPhone 11', '11')">iPhone 11 <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 11 Pro', '11')">iPhone 11 Pro <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 11 Pro Max', '11')">iPhone 11 Pro Max <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- iPhone 12 Series -->
+                <div class="series-section">
+                    <div class="series-title">iPhone 12</div>
+                    <div class="model-btn-group">
+                        <button class="model-option-btn" onclick="selectModel('iPhone 12', '12')">iPhone 12 <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 12 mini', '12')">iPhone 12 mini <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 12 Pro', '12')">iPhone 12 Pro <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 12 Pro Max', '12')">iPhone 12 Pro Max <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- iPhone 13 Series -->
+                <div class="series-section">
+                    <div class="series-title">iPhone 13</div>
+                    <div class="model-btn-group">
+                        <button class="model-option-btn" onclick="selectModel('iPhone 13', '13')">iPhone 13 <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 13 mini', '13')">iPhone 13 mini <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 13 Pro', '13')">iPhone 13 Pro <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 13 Pro Max', '13')">iPhone 13 Pro Max <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- iPhone 14 Series -->
+                <div class="series-section">
+                    <div class="series-title">iPhone 14</div>
+                    <div class="model-btn-group">
+                        <button class="model-option-btn" onclick="selectModel('iPhone 14', '14')">iPhone 14 <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Plus', '14')">iPhone 14 Plus <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Pro', '14')">iPhone 14 Pro <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 14 Pro Max', '14')">iPhone 14 Pro Max <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- iPhone 15 Series -->
+                <div class="series-section">
+                    <div class="series-title">iPhone 15</div>
+                    <div class="model-btn-group">
+                        <button class="model-option-btn" onclick="selectModel('iPhone 15', '15')">iPhone 15 <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Plus', '15')">iPhone 15 Plus <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Pro', '15')">iPhone 15 Pro <i class="fas fa-chevron-right"></i></button>
+                        <button class="model-option-btn" onclick="selectModel('iPhone 15 Pro Max', '15')">iPhone 15 Pro Max <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- STEP 2: Service, Serial & IMEI Details -->
+            <div id="step-2" class="step-content">
+                <div class="form-group">
+                    <label for="remove-option">Select Remove Option</label>
+                    <select id="remove-option">
+                        <!-- Populated dynamically based on selected model -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="serial-number">iPhone Serial Number</label>
+                    <input type="text" id="serial-number" placeholder="Enter device serial number">
+                </div>
+
+                <div class="form-group">
+                    <label for="imei-number">iPhone IMEI Number</label>
+                    <input type="text" id="imei-number" placeholder="Enter 15-digit IMEI number">
+                </div>
+
+                <button class="btn" onclick="goToPayment()">Next</button>
+                <br>
+                <a class="back-link" onclick="goBackToStep1()"><i class="fas fa-arrow-left"></i> Back to Models</a>
+            </div>
+
+            <!-- STEP 3: JazzCash Payment Screen -->
+            <div id="step-3" class="step-content">
+                <div class="payment-card">
+                    <div class="jazzcash-logo-text">
+                        <i class="fas fa-wallet"></i> JazzCash Payment
+                    </div>
+                    <div class="payment-details">
+                        <p>Selected Service: <span id="pay-service-name">-</span></p>
+                        <p>Total Amount: <span id="pay-amount" style="color: #ff3b30; font-size: 19px;">-</span></p>
+                        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.15); margin: 12px 0;">
+                        <p>JazzCash Number: <span>03211073755</span></p>
+                        <p>Name: <span>Rasheedan</span></p>
+                    </div>
+                </div>
+
+                <button class="btn" style="background: linear-gradient(135deg, #ed1c24 0%, #b3141b 100%); box-shadow: 0 6px 20px rgba(237, 28, 36, 0.4);" onclick="submitPayment()">Send Payment</button>
+                <br>
+                <a class="back-link" onclick="goBackToStep2()"><i class="fas fa-arrow-left"></i> Back</a>
+            </div>
+
+            <!-- STEP 4: Pending Status Screen -->
+            <div id="step-4" class="step-content">
+                <div class="pending-container">
+                    <div class="spinner"></div>
+                    <h3>Pending</h3>
+                    <p>Aapki payment aur request submit ho chuki hai. Verification process mein hai, kripya intezaar karein...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Model prices configuration mapping
+        const modelPrices = {
+            "11": { bypass: 4000, permanent: 10000 },
+            "12": { bypass: 5000, permanent: 13000 },
+            "13": { bypass: 6000, permanent: 14000 },
+            "14": { bypass: 7000, permanent: 17000 },
+            "15": { bypass: 8000, permanent: 18000 }
+        };
+
+        let activeModelName = "";
+        let activeSeriesKey = "";
+
+        function selectModel(modelName, seriesKey) {
+            activeModelName = modelName;
+            activeSeriesKey = seriesKey;
+
+            const prices = modelPrices[seriesKey];
+            const removeOptionSelect = document.getElementById("remove-option");
+
+            // Only show rates for the selected model
+            removeOptionSelect.innerHTML = `
+                <option value="bypass" data-price="${prices.bypass}">${activeModelName} - iCloud Bypass (Rs ${prices.bypass})</option>
+                <option value="permanent" data-price="${prices.permanent}">${activeModelName} - Permanent Remove (Rs ${prices.permanent})</option>
+            `;
+
+            switchStep("step-2");
+        }
+
+        function goToPayment() {
+            const serial = document.getElementById("serial-number").value.trim();
+            const imei = document.getElementById("imei-number").value.trim();
+
+            if (!serial || !imei) {
+                alert("Kripya Serial Number aur IMEI Number enter karein!");
+                return;
+            }
+
+            const removeOptionSelect = document.getElementById("remove-option");
+            const selectedOptText = removeOptionSelect.options[removeOptionSelect.selectedIndex].text;
+            const selectedPrice = removeOptionSelect.options[removeOptionSelect.selectedIndex].getAttribute("data-price");
+
+            document.getElementById("pay-service-name").textContent = selectedOptText;
+            document.getElementById("pay-amount").textContent = `Rs ${selectedPrice}`;
+
+            switchStep("step-3");
+        }
+
+        function submitPayment() {
+            switchStep("step-4");
+        }
+
+        function goBackToStep1() {
+            switchStep("step-1");
+        }
+
+        function goBackToStep2() {
+            switchStep("step-2");
+        }
+
+        function switchStep(stepId) {
+            document.querySelectorAll(".step-content").forEach(el => {
+                el.classList.remove("active");
+            });
+            document.getElementById(stepId).classList.add("active");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
